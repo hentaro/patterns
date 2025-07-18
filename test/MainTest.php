@@ -81,4 +81,17 @@ class MainTest extends TestCase
         $this->expectException(\InvalidArgumentException::class);
         $solver->solve(0.0, 2.0, 1.0);
     }
+
+    // п.11
+    public function testDoubleRootWithNearZeroDiscriminant(): void
+    {
+        $solver = new Main();
+        $res = $solver->solve(1.0, 2.0, 1.000000000000001); // D < 0, но близок к 0
+        sort($res);
+        $this->assertEquals([-1.0], $res); // всё ещё один корень
+        // Минимальная реализация
+        $res8 = $solver->solve8(1.0, 2.0, 1.000000000000001); // D < 0, но близок к 0
+        sort($res8);
+        $this->assertEquals([-1.0], $res8); // всё ещё один корень
+    }
 }

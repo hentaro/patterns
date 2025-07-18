@@ -5,19 +5,23 @@ class Main
 {
     public function solve(float $a, float $b, float $c): array
     {
+        if (!is_finite($a) || !is_finite($b) || !is_finite($c)) {
+            throw new \InvalidArgumentException("Коэффициенты должны быть конечными числами");
+        }
         // Проверка на нулевой коэффициент a
-        if($a === 0.0){
+        if (abs($a) < 1e-9) {
             throw new \InvalidArgumentException("Коэффициент 'a' не может быть равен 0");
         }
         // Вычисляем дискриминант
         $d = $b * $b - 4 * $a * $c;
-        if($d > 0){
+        $eps = 1e-12;
+        if($d > $eps){
             // Два корня
             $x1 = (-$b + sqrt($d)) / (2 * $a);
             $x2 = (-$b - sqrt($d)) / (2 * $a);
             return [$x1, $x2];
         }
-        elseif($d == 0.0) {
+        elseif(abs($d) <= $eps) {
             // Один корень
             $x = -$b / (2 * $a);
             return [$x];
