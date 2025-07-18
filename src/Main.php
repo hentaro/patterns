@@ -3,15 +3,26 @@
 namespace App;
 class Main
 {
-    public function solve(float $a, float $b, float $c): array
+    public function aNotZero(float $a): void
+    {
+        if (abs($a) < 1e-9) {
+            throw new \InvalidArgumentException("Коэффициент 'a' не может быть равен 0");
+        }
+    }
+
+    // п. 14
+    public function argsAreNumbers(float $a, float $b, float $c): void
     {
         if (!is_finite($a) || !is_finite($b) || !is_finite($c)) {
             throw new \InvalidArgumentException("Коэффициенты должны быть конечными числами");
         }
-        // Проверка на нулевой коэффициент a
-        if (abs($a) < 1e-9) {
-            throw new \InvalidArgumentException("Коэффициент 'a' не может быть равен 0");
-        }
+    }
+    public function solve(float $a, float $b, float $c): array
+    {
+        // Проверка на числовые значения
+        $this->argsAreNumbers($a, $b, $c);
+        // Проверка на нулевой коэффициент 'a'
+        $this->aNotZero($a);
         // Вычисляем дискриминант
         $d = $b * $b - 4 * $a * $c;
         $eps = 1e-12;
@@ -36,9 +47,10 @@ class Main
 
     public function solve4(float $a, float $b, float $c): array
     {
-        if (abs($a) < 1e-9) {
-            throw new \InvalidArgumentException("Коэффициент 'a' не может быть равен 0");
-        }
+        // Проверка на числовые значения
+        $this->argsAreNumbers($a, $b, $c);
+        // Проверка на нулевой коэффициент 'a'
+        $this->aNotZero($a);
 
         $d = $b * $b - 4 * $a * $c;
 
@@ -54,9 +66,10 @@ class Main
      */
     public function solve6(float $a, float $b, float $c): array
     {
-        if (abs($a) < 1e-9) {
-            throw new \InvalidArgumentException("Коэффициент 'a' не может быть равен 0");
-        }
+        // Проверка на числовые значения
+        $this->argsAreNumbers($a, $b, $c);
+        // Проверка на нулевой коэффициент 'a'
+        $this->aNotZero($a);
 
         $d = $b * $b - 4 * $a * $c;
 
@@ -74,9 +87,10 @@ class Main
      */
     public function solve8(float $a, float $b, float $c): array
     {
-        if (abs($a) < 1e-9) {
-            throw new \InvalidArgumentException("Коэффициент 'a' не может быть равен 0");
-        }
+        // Проверка на числовые значения
+        $this->argsAreNumbers($a, $b, $c);
+        // Проверка на нулевой коэффициент 'a'
+        $this->aNotZero($a);
 
         $d = $b * $b - 4 * $a * $c;
 

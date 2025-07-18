@@ -94,4 +94,29 @@ class MainTest extends TestCase
         sort($res8);
         $this->assertEquals([-1.0], $res8); // всё ещё один корень
     }
+
+    // п.13 нечисловые значения
+    public function testNonFiniteCoefficientsThrowException(): void
+    {
+        $solver = new Main();
+
+        $badValues = [INF, -INF, NAN];
+
+        foreach ($badValues as $value) {
+            foreach (['a', 'b', 'c'] as $var) {
+                $a = 1.0; $b = 0.0; $c = 0.0;
+
+                if ($var === 'a') $a = $value;
+                if ($var === 'b') $b = $value;
+                if ($var === 'c') $c = $value;
+
+                try {
+                    $solver->solve($a, $b, $c);
+                    $this->fail("Ожидалось исключение для $var = $value");
+                } catch (\InvalidArgumentException $e) {
+                    $this->assertTrue(true);
+                }
+            }
+        }
+    }
 }
