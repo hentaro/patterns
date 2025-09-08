@@ -34,6 +34,12 @@ class MovableObject implements MovableInterface
         return ['vx' => $this->vx, 'vy' => $this->vy];
     }
 
+    public function setVelocity(int $vx, int $vy): void
+    {
+        $this->vx = $vx;
+        $this->vy = $vy;
+    }
+
     public function move(): void
     {
         $this->x += $this->vx;

@@ -26,4 +26,13 @@ interface MovableInterface
      * @return array{vx: int, vy: int}
      */
     public function getVelocity(): array;
+
+    /**
+     * Устанавливает новую скорость объекта.
+     *
+     * @param int $vx
+     * @param int $vy
+     * @return void
+     */
+    public function setVelocity(int $vx, int $vy): void;
 }
